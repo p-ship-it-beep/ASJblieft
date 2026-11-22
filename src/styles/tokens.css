@@ -1,0 +1,37 @@
+/**
+ * DESIGN TOKENS – ASJblieft
+ * Kleuren & lettertypes volgens de visuele richtlijn (aquarel / ecoline).
+ * De kleurnamen worden ook gebruikt door de ecoline-achtergronden.
+ */
+:root {
+  /* Aquarelpalet */
+  --aubergine: #7b2d56;
+  --pruim: #9a4a74;
+  --terracotta: #e2733f;
+  --roest: #c94a2c;
+  --perzik: #f3b07e;
+  --zand: #f4cfa6;
+  --olijf: #7f7c34;
+  --salie: #a8a86a;
+  --goud: #c99a3e;
+
+  /* Basis */
+  --creme: #fcefe0;
+  --papier: #fdf5ea;
+  --inkt: #5a1a40;        /* koppen en tekst */
+  --inkt-zacht: #6e3a55;
+  --knop: #6b6930;        /* olijfgroene knoppen */
+  --knop-hover: #57551f;
+  --glas: rgba(253, 244, 232, 0.62);
+  --glas-rand: rgba(255, 255, 255, 0.55);
+
+  /* Lettertypes */
+  --font-script: 'Parisienne', 'Brush Script MT', cursive;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Lora', Georgia, serif;
+
+  /* Maten */
+  --max: 1240px;
+  --radius: 26px;
+  --schaduw: 0 18px 40px -24px rgba(90, 26, 64, 0.35);
+}
