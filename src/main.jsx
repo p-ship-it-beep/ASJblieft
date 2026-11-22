@@ -2,14 +2,15 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 
-import '@fontsource/parisienne/400.css'
+// Lettertypes lokaal gehost (geen verbinding met Google)
 import '@fontsource/playfair-display/400.css'
 import '@fontsource/playfair-display/500.css'
-import '@fontsource/lora/400.css'
-import '@fontsource/lora/500.css'
-import '@fontsource/lora/400-italic.css'
+import '@fontsource/dm-sans/400.css'
+import '@fontsource/dm-sans/500.css'
+import '@fontsource/dm-sans/400-italic.css'
+import '@fontsource/dancing-script/500.css'
+import '@fontsource/dancing-script/600.css'
 
-import './styles/tokens.css'
 import './styles/global.css'
 import App from './App'
 

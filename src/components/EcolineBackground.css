@@ -1,0 +1,24 @@
+.ecoline {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(160deg, var(--creme) 0%, #F6F0E8 55%, var(--zand) 140%);
+  overflow: hidden;
+}
+
+.ecoline svg {
+  width: 100%;
+  height: 100%;
+}
+
+.ecoline-blob { mix-blend-mode: multiply; }
+
+.ecoline-lines { opacity: 0.55; }
+
+.ecoline-image {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+}

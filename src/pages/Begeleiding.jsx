@@ -1,83 +1,82 @@
-import { PageHero, ContactBand, Button } from '../components/ui'
-import { IconZwanger, IconHart } from '../components/art/Icons'
-import { site } from '../config/site'
+import Button from '../components/Button'
+import Panel from '../components/Panel'
+import { UnfoldingFlower, Nest, HandsHolding } from '../components/illustrations'
+import usePageMeta from '../lib/usePageMeta'
+import './Pages.css'
 
 export default function Begeleiding() {
+  usePageMeta(
+    'Begeleiding',
+    'Persoonlijke begeleiding bij zwangerschapskeuzes en na miskraam of abortus, in Den Haag. Gesprekken individueel of samen met je partner.',
+  )
+
   return (
     <>
-      <PageHero title="Begeleiding" script="In jouw tempo, op jouw manier">
-        Persoonlijke gesprekken bij zwangerschapskeuzes, na een miskraam of na een abortus. Zonder oordeel, met
-        aandacht voor wat jij voelt en nodig hebt.
-      </PageHero>
+      <section className="container page-intro">
+        <HandsHolding className="page-intro-art" />
+        <div>
+          <h1>Begeleiding</h1>
+          <p className="accent">Ruimte voor wat jij nodig hebt</p>
+          <p className="lead">
+            Persoonlijke begeleiding bij zwangerschapskeuzes en na een miskraam of abortus. In gesprekken krijg je de
+            ruimte om stil te staan bij wat er speelt, in jouw tempo.
+          </p>
+        </div>
+      </section>
 
-      <section className="section" id="keuzes">
-        <div className="container split">
-          <IconZwanger className="split-icon" />
+      <section className="container section-tight stack">
+        <Panel as="article" className="block-with-art" id="zwangerschapskeuzes">
+          <UnfoldingFlower className="block-art" />
           <div>
-            <h2>Bij een zwangerschapskeuze</h2>
+            <h2>Begeleiding bij zwangerschapskeuzes</h2>
             <p>
-              Een onverwachte zwangerschap kan je overvallen. Misschien twijfel je, misschien weet je het eigenlijk al
-              maar voelt het zwaar. Of misschien zijn er omstandigheden die de keuze ingewikkeld maken.
+              Voor mensen die twijfelen over het voortzetten van een zwangerschap, en ook voor mensen die nadenken over het
+              behouden of voortzetten ervan.
             </p>
-            <p>In de gesprekken is er ruimte om:</p>
+            <p>
+              Ik geef geen antwoord en neem geen beslissing over. Door gesprekken en gerichte vragen help ik je om je
+              eigen gedachten, gevoelens en inzichten te onderzoeken, zodat je tot een eigen antwoord kunt komen.
+            </p>
+            <p>Dat kan in één gesprek of in meerdere gesprekken. De begeleiding is mogelijk:</p>
             <ul className="soft-list">
-              <li>je gevoelens en gedachten te ordenen;</li>
-              <li>stil te staan bij wat voor jou belangrijk is;</li>
-              <li>te onderzoeken welke keuze bij jou en jouw situatie past;</li>
-              <li>na te denken over hoe je verder wilt, wat je ook besluit.</li>
+              <li>individueel;</li>
+              <li>samen met een partner;</li>
+              <li>of als combinatie van gesprekken samen en apart.</li>
             </ul>
-            <p>Ik geef geen advies over wat je moet kiezen. Ik help je om je eigen antwoord te vinden.</p>
           </div>
-        </div>
-      </section>
+        </Panel>
 
-      <section className="section tinted" id="verlies">
-        <div className="container split">
-          <IconHart className="split-icon" />
+        <Panel as="article" className="block-with-art" id="miskraam-abortus">
+          <Nest className="block-art" />
           <div>
-            <h2>Na een miskraam of abortus</h2>
+            <h2>Begeleiding na miskraam en abortus</h2>
             <p>
-              Verlies tijdens de zwangerschap is vaak een stil verdriet. De omgeving weet het soms niet, of weet niet goed
-              wat te zeggen. En ook na een bewuste keuze kunnen er gevoelens zijn van verdriet, opluchting, schuld of
-              twijfel – soms allemaal tegelijk.
+              Ik ben gecertificeerd miskraam- en abortuscoach en werk met het vijfstappenprogramma van Miskraambegeleiding
+              Nederland.
             </p>
-            <p>
-              Alles wat je voelt mag er zijn. Samen geven we jouw ervaring een plek, zodat je weer ruimte krijgt om verder
-              te gaan.
-            </p>
+            <p>Deze begeleiding is er voor mensen die:</p>
+            <ul className="soft-list">
+              <li>een miskraam hebben meegemaakt;</li>
+              <li>een abortus hebben gehad waar ze achter staan, en die toch verwerking met zich meebrengt;</li>
+              <li>een abortus hebben meegemaakt die moeilijk of ongewenst voelde.</li>
+            </ul>
           </div>
-        </div>
-      </section>
+        </Panel>
 
-      <section className="section" id="werkwijze">
-        <div className="container narrow">
-          <h2 className="center">Werkwijze</h2>
-          <ol className="steps">
+        <Panel as="article">
+          <h2>Praktisch</h2>
+          <ul className="soft-list">
+            <li>Gesprekken duren ongeveer 60 minuten. Een goed gesprek mag de ruimte krijgen die het nodig heeft.</li>
+            <li>De begeleiding vindt fysiek plaats in Den Haag.</li>
+            <li>Een gesprek tijdens een wandeling is mogelijk.</li>
             <li>
-              <h3>Kennismaken</h3>
-              <p>Je neemt contact op en we plannen een eerste gesprek. Daarin kijken we of het klikt en wat je zoekt.</p>
+              Andere locaties zijn bespreekbaar. Vooral na een miskraam of abortus kan een neutrale plek prettig zijn.
             </li>
-            <li>
-              <h3>Gesprekken</h3>
-              <p>
-                Een gesprek duurt {site.sessionLength} en vindt plaats in {site.sessionCity}. Hoeveel gesprekken je nodig
-                hebt, bepalen we samen.
-              </p>
-            </li>
-            <li>
-              <h3>Afronden</h3>
-              <p>We sluiten af wanneer het voor jou goed voelt, en kijken terug op wat je hebt meegenomen.</p>
-            </li>
-          </ol>
-          <div className="info-card glass-card">
-            <h3>Tarieven</h3>
-            <p>{site.rates || 'De tarieven volgen binnenkort. Neem gerust contact op voor meer informatie.'}</p>
-            <Button to="/contact?onderwerp=kennismaking">Plan een kennismaking</Button>
-          </div>
-        </div>
+            <li>De gesprekken vinden plaats in persoonlijk contact; er is geen online begeleiding.</li>
+          </ul>
+          <Button to="/contact?onderwerp=kennismaking">Plan een kennismakingsgesprek</Button>
+        </Panel>
       </section>
-
-      <ContactBand />
     </>
   )
 }

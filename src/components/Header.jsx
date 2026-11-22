@@ -1,86 +1,78 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
-import { ChevronDown, Heart, Menu, X } from 'lucide-react'
-import { site } from '../config/site'
-
-const begeleidingSub = [
-  { to: '/begeleiding#keuzes', label: 'Zwangerschapskeuzes' },
-  { to: '/begeleiding#verlies', label: 'Na miskraam of abortus' },
-  { to: '/begeleiding#werkwijze', label: 'Werkwijze' },
-]
+import { Heart, Menu, X } from 'lucide-react'
+import Logo from './Logo'
+import { site, nav } from '../config/site'
+import './Button.css'
+import './Header.css'
 
 export default function Header() {
   const [open, setOpen] = useState(false)
-  const [subOpen, setSubOpen] = useState(false)
-  const { pathname, hash } = useLocation()
-  const subRef = useRef(null)
+  const { pathname } = useLocation()
+  const toggleRef = useRef(null)
+  const panelRef = useRef(null)
 
-  // Menu's sluiten na navigeren
-  useEffect(() => {
-    setOpen(false)
-    setSubOpen(false)
-  }, [pathname, hash])
+  // Menu sluiten bij paginawissel
+  useEffect(() => setOpen(false), [pathname])
 
-  // Dropdown sluiten bij klik buiten of Escape
+  // Focus in het menu, Escape sluit, Tab blijft binnen menu + knop
   useEffect(() => {
-    if (!subOpen) return
-    const onClick = (e) => subRef.current && !subRef.current.contains(e.target) && setSubOpen(false)
-    const onKey = (e) => e.key === 'Escape' && setSubOpen(false)
-    document.addEventListener('mousedown', onClick)
-    document.addEventListener('keydown', onKey)
-    return () => {
-      document.removeEventListener('mousedown', onClick)
-      document.removeEventListener('keydown', onKey)
+    if (!open) return
+    const panel = panelRef.current
+    const focusables = () => [toggleRef.current, ...panel.querySelectorAll('a')]
+    focusables()[1]?.focus()
+
+    const onKey = (e) => {
+      if (e.key === 'Escape') {
+        setOpen(false)
+        toggleRef.current?.focus()
+      } else if (e.key === 'Tab') {
+        const items = focusables()
+        const first = items[0]
+        const last = items[items.length - 1]
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault()
+          last.focus()
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault()
+          first.focus()
+        }
+      }
     }
-  }, [subOpen])
+    document.addEventListener('keydown', onKey)
+    return () => document.removeEventListener('keydown', onKey)
+  }, [open])
 
   return (
     <header className={`site-header ${open ? 'is-open' : ''}`}>
       <div className="container header-inner">
-        <Link to="/" className="brand" aria-label={`${site.name} – naar de homepage`}>
-          <span className="brand-name">{site.name}</span>
-          <span className="brand-sub">
-            Begeleiding bij zwangerschapskeuzes,<br /> verlies en het ouderschap
-          </span>
+        <Link to="/" className="brand" aria-label={`${site.name}, naar de homepage`}>
+          <Logo className="brand-logo" />
+          <span className="brand-sub">{site.subtitle}</span>
         </Link>
 
         <button
+          ref={toggleRef}
+          type="button"
           className="menu-toggle"
           aria-expanded={open}
           aria-controls="hoofdmenu"
           onClick={() => setOpen((v) => !v)}
         >
-          {open ? <X size={22} /> : <Menu size={22} />}
-          <span className="sr-only">Menu</span>
+          {open ? <X size={24} aria-hidden="true" /> : <Menu size={24} aria-hidden="true" />}
+          <span className="sr-only">{open ? 'Menu sluiten' : 'Menu openen'}</span>
         </button>
 
-        <nav id="hoofdmenu" className="main-nav" aria-label="Hoofdmenu">
+        <nav id="hoofdmenu" ref={panelRef} className="main-nav" aria-label="Hoofdmenu">
           <ul>
-            <li><NavLink to="/" end>Home</NavLink></li>
-            <li className={`has-sub ${subOpen ? 'sub-open' : ''}`} ref={subRef}>
-              <div className="sub-trigger">
-                <NavLink to="/begeleiding">Begeleiding</NavLink>
-                <button
-                  className="sub-toggle"
-                  aria-expanded={subOpen}
-                  aria-label="Submenu begeleiding"
-                  onClick={() => setSubOpen((v) => !v)}
-                >
-                  <ChevronDown size={16} />
-                </button>
-              </div>
-              <ul className="sub-menu">
-                {begeleidingSub.map((s) => (
-                  <li key={s.to}><Link to={s.to}>{s.label}</Link></li>
-                ))}
-              </ul>
-            </li>
-            <li><NavLink to="/postpartum-groepen">Postpartum groepen</NavLink></li>
-            <li><NavLink to="/over-mij">Over mij</NavLink></li>
-            <li><NavLink to="/contact">Contact</NavLink></li>
+            {nav.map((item) => (
+              <li key={item.to}>
+                <NavLink to={item.to} end={item.to === '/'}>{item.label}</NavLink>
+              </li>
+            ))}
           </ul>
-          <Link to="/contact" className="btn btn-sm header-cta">
-            Neem contact op <Heart size={17} strokeWidth={1.7} />
+          <Link to="/contact" className="btn btn-small header-cta">
+            Neem contact op <Heart size={17} strokeWidth={1.8} aria-hidden="true" />
           </Link>
         </nav>
       </div>

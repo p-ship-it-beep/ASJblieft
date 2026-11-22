@@ -1,0 +1,69 @@
+.contact-form {
+  display: grid;
+  gap: 20px;
+}
+
+.field { display: grid; gap: 6px; }
+.field label { font-weight: 500; }
+.req { font-weight: 400; font-size: 0.85em; color: var(--tekst-zacht); }
+
+.field input[type='text'],
+.field input[type='email'],
+.field input[type='tel'],
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid rgba(51, 51, 51, 0.3);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--tekst);
+  font: inherit;
+}
+.field textarea { resize: vertical; min-height: 90px; }
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: 3px solid var(--olijf);
+  outline-offset: 1px;
+  border-color: var(--olijf);
+}
+.field [aria-invalid='true'] { border-color: var(--fout); }
+
+.field-hint { margin: 0; font-size: 0.88rem; color: var(--tekst-zacht); }
+.field-error { margin: 0; font-size: 0.9rem; color: var(--fout); }
+
+.field-check {
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  column-gap: 12px;
+}
+.field-check input {
+  width: 22px;
+  height: 22px;
+  margin: 3px 0 0;
+  accent-color: var(--olijf);
+}
+.field-check label { font-weight: 400; }
+.field-check .field-error { grid-column: 2; }
+
+.hp {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.form-error { margin: 0; color: var(--fout); }
+.contact-form .btn { justify-self: start; }
+
+.form-thanks { text-align: center; padding: 12px 0; }
+.form-thanks svg { margin: 0 auto 12px; color: var(--aubergine); }
+.form-thanks-text {
+  margin-inline: auto;
+  font-family: var(--font-kop);
+  font-size: 1.3rem;
+  color: var(--aubergine);
+}
+.form-note { margin-inline: auto; font-size: 0.92rem; color: var(--tekst-zacht); }

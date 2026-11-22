@@ -1,0 +1,114 @@
+.site-header {
+  position: relative;
+  z-index: 10;
+  padding-top: clamp(16px, 2.5vw, 28px);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  text-decoration: none;
+  color: var(--tekst);
+}
+.brand:hover { color: var(--tekst); }
+.brand-logo { font-size: clamp(2.6rem, 4.6vw, 3.6rem); }
+.brand-sub {
+  max-width: 19em;
+  font-size: 0.82rem;
+  line-height: 1.35;
+  color: var(--tekst-zacht);
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 3vw, 40px);
+}
+.main-nav ul {
+  display: flex;
+  gap: clamp(16px, 2.2vw, 30px);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-width: none;
+}
+.main-nav li + li { margin-top: 0; }
+.main-nav ul a {
+  position: relative;
+  display: inline-block;
+  padding: 6px 2px;
+  color: var(--tekst);
+  text-decoration: none;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+.main-nav ul a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--olijf);
+  transform: scaleX(0);
+  transition: transform 0.25s ease;
+}
+.main-nav ul a:hover::after,
+.main-nav ul a.active::after { transform: scaleX(1); }
+.main-nav ul a.active { color: var(--olijf-donker); }
+
+.menu-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(85, 107, 79, 0.35);
+  border-radius: 50%;
+  background: var(--paneel);
+  color: var(--aubergine);
+  cursor: pointer;
+}
+
+/* Tablet en mobiel: hamburgermenu met paneel */
+@media (max-width: 1100px) {
+  .menu-toggle { display: inline-flex; }
+
+  .main-nav {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: var(--gutter);
+    right: var(--gutter);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+    padding: 24px;
+    border-radius: var(--radius);
+    background: var(--creme);
+    box-shadow: var(--schaduw);
+    display: none;
+  }
+  .is-open .main-nav { display: flex; }
+  .main-nav ul { flex-direction: column; gap: 4px; }
+  .main-nav ul a { padding: 10px 4px; font-size: 1.05rem; }
+  .main-nav ul a::after { right: auto; width: 2.5em; }
+  .header-cta { align-self: flex-start; }
+}
+
+@media (max-width: 1100px) {
+  .header-cta { white-space: normal; }
+}
+
+@media (max-width: 640px) {
+  .brand-sub { font-size: 0.75rem; max-width: 17em; }
+}

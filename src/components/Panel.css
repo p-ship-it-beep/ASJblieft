@@ -1,0 +1,10 @@
+.panel {
+  padding: clamp(24px, 4vw, 44px);
+  border-radius: var(--radius);
+  background: var(--paneel);
+  box-shadow: var(--schaduw);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.panel > :last-child { margin-bottom: 0; }

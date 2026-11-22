@@ -1,17 +1,15 @@
-# ASJblieft – Apache-instellingen (Yourname / shared hosting)
+# ASJblieft – Apache-instellingen
 Options -MultiViews
 RewriteEngine On
 RewriteBase /
 
-# Optioneel: altijd naar https://www. (haal de # weg zodra SSL actief is)
-# RewriteCond %{HTTPS} off [OR]
-# RewriteCond %{HTTP_HOST} !^www\. [NC]
-# RewriteRule ^ https://www.asjblieft.nl%{REQUEST_URI} [L,R=301]
+# PHP-formulier niet doorsturen
+RewriteRule ^api/ - [L]
 
 # React Router: alle onbekende paden naar index.html
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^ index.html [L]
+RewriteRule . /index.html [L]
 
 <IfModule mod_expires.c>
   ExpiresActive On
@@ -19,5 +17,6 @@ RewriteRule ^ index.html [L]
   ExpiresByType text/css "access plus 1 year"
   ExpiresByType application/javascript "access plus 1 year"
   ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 month"
   ExpiresByType image/svg+xml "access plus 1 month"
 </IfModule>

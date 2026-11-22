@@ -1,0 +1,20 @@
+.logo {
+  display: inline-flex;
+  align-items: baseline;
+  font-family: var(--font-hand);
+  color: var(--aubergine);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* ASJ als één geheel: letters overlappen licht */
+.logo-asj {
+  font-weight: 600;
+  letter-spacing: -0.09em;
+}
+
+/* blieft er direct tegenaan, met een haarfijne ruimte */
+.logo-blieft {
+  font-weight: 500;
+  margin-left: 0.1em;
+}
