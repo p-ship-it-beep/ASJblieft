@@ -20,12 +20,12 @@ export const site = {
   },
   /**
    * Achtergrond van de hele site
-   * - 'svg'   → getekende ecolinevlekken met een eigen compositie per pagina (standaard)
-   * - 'canva' → de aquarel uit Canva (public/ecoline/canva-aquarel.jpg) op alle pagina's
+   * - 'svg'   → getekende ecolinevlekken met een eigen compositie per pagina
+   * - 'canva' → de aquarel uit Canva (public/ecoline/canva-aquarel.jpg) op alle pagina's (standaard)
    * Testen zonder dit aan te passen: zet ?achtergrond=canva of ?achtergrond=svg achter
    * het adres. Die keuze onthoudt je browser; ?achtergrond=standaard zet hem terug.
    */
-  background: 'svg',
+  background: 'canva',
   backgroundImages: {
     canva: '/ecoline/canva-aquarel.jpg',
   },

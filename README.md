@@ -23,7 +23,7 @@ Alle praktische gegevens staan in **`src/config/site.js`**: e-mailadres, telefoo
 ## Achtergrond kiezen (SVG of Canva-aquarel)
 
 - **Testen in je eigen browser:** zet `?achtergrond=canva` achter het adres (bijv. `/?achtergrond=canva`). Je browser onthoudt die keuze op alle pagina's. Terug naar de getekende variant: `?achtergrond=svg`. Je eigen keuze wissen: `?achtergrond=standaard`.
-- **Voor alle bezoekers wisselen:** zet in `src/config/site.js` `background` op `'canva'` of terug op `'svg'`.
+- **Voor alle bezoekers wisselen:** zet in `src/config/site.js` `background` op `'canva'` (nu de standaard) of `'svg'`.
 
 ## Ecolinescans en foto toevoegen
 
