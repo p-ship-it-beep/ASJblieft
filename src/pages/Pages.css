@@ -20,7 +20,7 @@
   width: 100%;
   max-width: 420px;
   justify-self: center;
-  color: var(--aubergine);
+  color: var(--kop);
 }
 
 .for-who { position: relative; max-width: 860px; margin-inline: auto; }
@@ -29,7 +29,7 @@
   top: -28px;
   right: clamp(12px, 4vw, 40px);
   width: 64px;
-  color: var(--olijf);
+  color: var(--groen);
 }
 
 /* ---------- Kop van binnenpagina's ---------- */
@@ -43,7 +43,7 @@
 }
 .page-intro-art {
   width: clamp(110px, 16vw, 180px);
-  color: var(--aubergine);
+  color: var(--kop);
 }
 .page-intro h1 { margin-bottom: 0.1em; }
 .lead { font-size: 1.1rem; }
@@ -55,7 +55,7 @@
   gap: clamp(20px, 4vw, 40px);
   align-items: start;
 }
-.block-art { width: 120px; color: var(--aubergine); }
+.block-art { width: 120px; color: var(--kop); }
 .block-with-art :last-child > :last-child { margin-bottom: 0; }
 
 .section-title { margin-bottom: 0.8em; }
@@ -100,7 +100,7 @@
   place-items: center;
   font-family: var(--font-kop);
   font-size: 1.3rem;
-  color: var(--aubergine);
+  color: var(--kop);
 }
 
 /* ---------- Contact ---------- */
@@ -116,7 +116,7 @@
 
 /* ---------- Privacy / 404 ---------- */
 .narrow-panel { max-width: 820px; margin-inline: auto; }
-.notfound-art { width: 120px; margin: 0 auto 16px; color: var(--aubergine); }
+.notfound-art { width: 120px; margin: 0 auto 16px; color: var(--kop); }
 
 /* ---------- Responsief ---------- */
 @media (max-width: 1024px) {
@@ -137,4 +137,16 @@
   .page-intro-art { width: 96px; }
   .block-with-art { grid-template-columns: minmax(0, 1fr); }
   .block-art { width: 84px; }
+}
+
+/* Grote titel ASJblieft uit (site.showHeroTitle of stijlpaneel):
+   visueel verborgen, maar blijft de h1 voor schermlezers en zoekmachines */
+html[data-hero-titel='uit'] .hero-title {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
 }

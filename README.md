@@ -25,6 +25,14 @@ Alle praktische gegevens staan in **`src/config/site.js`**: e-mailadres, telefoo
 - **Testen in je eigen browser:** zet `?achtergrond=canva` achter het adres (bijv. `/?achtergrond=canva`). Je browser onthoudt die keuze op alle pagina's. Terug naar de getekende variant: `?achtergrond=svg`. Je eigen keuze wissen: `?achtergrond=standaard`.
 - **Voor alle bezoekers wisselen:** zet in `src/config/site.js` `background` op `'canva'` (nu de standaard) of `'svg'`.
 
+## Stijl testen (stijlpaneel)
+
+Zet `?stijl=aan` achter het adres. Er verschijnt een paneel waarmee je in je eigen browser test:
+groentint van knoppen en links (met contrastcontrole), kleur van koppen en tekst, en de grote titel "ASJblieft" op de homepage aan/uit.
+Je keuzes blijven bewaard op alle pagina's. **Kopieer mijn keuzes** maakt een lijstje om door te sturen; **Standaard** zet alles terug. `?stijl=uit` verbergt het paneel.
+
+Definitief maken: zet de gekozen kleuren in `src/styles/global.css` (`--groen`, `--kop`, `--tekst`) en de titelkeuze in `src/config/site.js` (`showHeroTitle`).
+
 ## Ecolinescans en foto toevoegen
 
 - **Ecoline-achtergrond:** de achtergrond wordt nu met SVG getekend. Wil je een echte scan gebruiken, zet die als WebP in `public/ecoline/` (bijvoorbeeld `home.webp`) en geef hem mee in `src/App.jsx`:

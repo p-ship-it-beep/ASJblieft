@@ -30,6 +30,9 @@ export const site = {
     canva: '/ecoline/canva-aquarel.jpg',
   },
 
+  /** Grote titel "ASJblieft" in de hero van de homepage tonen (true) of verbergen (false). */
+  showHeroTitle: true,
+
   form: {
     provider: 'web3forms', //                      of 'formspree' of 'php'
     endpoint: import.meta.env.VITE_FORM_ENDPOINT, // in .env

@@ -7,7 +7,7 @@
   padding: 0.85em 1.6em;
   border: 0;
   border-radius: 999px;
-  background: var(--olijf);
+  background: var(--groen);
   color: var(--creme);
   font: 500 1rem/1.25 var(--font-tekst);
   text-align: center;
@@ -18,7 +18,7 @@
   transition: background-color 0.2s ease, transform 0.2s ease;
 }
 .btn:hover {
-  background: var(--olijf-donker);
+  background: var(--groen-donker);
   color: var(--creme);
   text-decoration: none;
   transform: translateY(-1px);

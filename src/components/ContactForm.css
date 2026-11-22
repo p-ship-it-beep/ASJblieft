@@ -24,9 +24,9 @@
 .field input:focus,
 .field select:focus,
 .field textarea:focus {
-  outline: 3px solid var(--olijf);
+  outline: 3px solid var(--groen);
   outline-offset: 1px;
-  border-color: var(--olijf);
+  border-color: var(--groen);
 }
 .field [aria-invalid='true'] { border-color: var(--fout); }
 
@@ -42,7 +42,7 @@
   width: 22px;
   height: 22px;
   margin: 3px 0 0;
-  accent-color: var(--olijf);
+  accent-color: var(--groen);
 }
 .field-check label { font-weight: 400; }
 .field-check .field-error { grid-column: 2; }
@@ -59,11 +59,11 @@
 .contact-form .btn { justify-self: start; }
 
 .form-thanks { text-align: center; padding: 12px 0; }
-.form-thanks svg { margin: 0 auto 12px; color: var(--aubergine); }
+.form-thanks svg { margin: 0 auto 12px; color: var(--kop); }
 .form-thanks-text {
   margin-inline: auto;
   font-family: var(--font-kop);
   font-size: 1.3rem;
-  color: var(--aubergine);
+  color: var(--kop);
 }
 .form-note { margin-inline: auto; font-size: 0.92rem; color: var(--tekst-zacht); }

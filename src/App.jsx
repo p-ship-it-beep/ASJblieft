@@ -10,6 +10,7 @@ import OverMij from './pages/OverMij'
 import Contact from './pages/Contact'
 import Privacy from './pages/Privacy'
 import NotFound from './pages/NotFound'
+import StylePanel from './components/StylePanel'
 import { site } from './config/site'
 
 const variants = {
@@ -80,6 +81,7 @@ export default function App() {
         </Routes>
       </main>
       <Footer />
+      <StylePanel />
     </>
   )
 }

@@ -13,6 +13,10 @@ import '@fontsource/dancing-script/600.css'
 
 import './styles/global.css'
 import App from './App'
+import { applyChoices, loadChoices } from './lib/styleChoices'
+
+// Eigen stijlkeuzes (stijlpaneel) meteen toepassen, vóór de eerste weergave
+applyChoices(loadChoices())
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

@@ -59,13 +59,13 @@
   bottom: -1px;
   height: 2px;
   border-radius: 2px;
-  background: var(--olijf);
+  background: var(--groen);
   transform: scaleX(0);
   transition: transform 0.25s ease;
 }
 .main-nav ul a:hover::after,
 .main-nav ul a.active::after { transform: scaleX(1); }
-.main-nav ul a.active { color: var(--olijf-donker); }
+.main-nav ul a.active { color: var(--groen-donker); }
 
 .menu-toggle {
   display: none;
@@ -76,7 +76,7 @@
   border: 1px solid rgba(85, 107, 79, 0.35);
   border-radius: 50%;
   background: var(--paneel);
-  color: var(--aubergine);
+  color: var(--kop);
   cursor: pointer;
 }
 

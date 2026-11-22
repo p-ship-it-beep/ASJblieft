@@ -15,6 +15,11 @@
   --tekst: #333333;
   --paneel: rgba(250, 248, 245, 0.78); /* transparant crème achter tekst */
 
+  /* Stijlkeuzes (aan te passen via het stijlpaneel, zie src/lib/styleChoices.js) */
+  --groen: var(--olijf);                                   /* knoppen, links, menustreep */
+  --groen-donker: color-mix(in srgb, var(--groen) 78%, #000);
+  --kop: var(--aubergine);                                 /* koppen, accentregels, illustraties */
+
   /* Afgeleid */
   --olijf-donker: #43553E;
   --oker: #B8925A;          /* zwierige accentlijnen */
@@ -61,7 +66,7 @@ img, svg { display: block; max-width: 100%; }
 h1, h2, h3 {
   font-family: var(--font-kop);
   font-weight: 500;
-  color: var(--aubergine);
+  color: var(--kop);
   line-height: 1.2;
   margin: 0 0 0.6em;
   text-wrap: balance;
@@ -74,15 +79,15 @@ p, ul, ol { margin: 0 0 1em; max-width: var(--tekstbreedte); }
 li + li { margin-top: 0.35em; }
 
 a {
-  color: var(--olijf);
+  color: var(--groen);
   text-decoration: underline;
   text-underline-offset: 3px;
   text-decoration-thickness: 1px;
 }
-a:hover { color: var(--olijf-donker); text-decoration-thickness: 2px; }
+a:hover { color: var(--groen-donker); text-decoration-thickness: 2px; }
 
 :focus-visible {
-  outline: 3px solid var(--olijf);
+  outline: 3px solid var(--groen);
   outline-offset: 3px;
   border-radius: 6px;
 }
@@ -91,7 +96,7 @@ a:hover { color: var(--olijf-donker); text-decoration-thickness: 2px; }
 .accent {
   font-family: var(--font-hand);
   font-weight: 500;
-  color: var(--aubergine);
+  color: var(--kop);
   font-size: clamp(1.7rem, 3.6vw, 2.5rem);
   line-height: 1.2;
   margin: 0 0 0.6em;
@@ -121,7 +126,7 @@ a:hover { color: var(--olijf-donker); text-decoration-thickness: 2px; }
 .skip-link {
   position: absolute; left: 16px; top: -100px; z-index: 100;
   padding: 10px 18px; border-radius: 999px;
-  background: var(--olijf); color: var(--creme); text-decoration: none;
+  background: var(--groen); color: var(--creme); text-decoration: none;
 }
 .skip-link:focus { top: 16px; color: var(--creme); }
 
