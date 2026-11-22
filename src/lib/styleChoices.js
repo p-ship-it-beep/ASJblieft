@@ -32,11 +32,69 @@ export const textColors = [
   { value: '#5A2440', label: 'Aubergine diep' },
 ]
 
+/**
+ * Lettertypes. `load` laadt een testlettertype pas wanneer het gekozen wordt,
+ * zodat gewone bezoekers niets extra's downloaden.
+ */
+export const headingFonts = [
+  { value: 'playfair', label: 'Playfair Display (huidig)', css: "'Playfair Display', Georgia, serif" },
+  {
+    value: 'cormorant', label: 'Cormorant Garamond', css: "'Cormorant Garamond', Georgia, serif",
+    load: () => Promise.all([import('@fontsource/cormorant-garamond/500.css'), import('@fontsource/cormorant-garamond/600.css')]),
+  },
+  {
+    value: 'lora', label: 'Lora', css: "'Lora', Georgia, serif",
+    load: () => Promise.all([import('@fontsource/lora/400.css'), import('@fontsource/lora/500.css')]),
+  },
+  {
+    value: 'fraunces', label: 'Fraunces', css: "'Fraunces', Georgia, serif",
+    load: () => Promise.all([import('@fontsource/fraunces/400.css'), import('@fontsource/fraunces/500.css')]),
+  },
+]
+
+export const bodyFonts = [
+  { value: 'dmsans', label: 'DM Sans (huidig)', css: "'DM Sans', system-ui, sans-serif" },
+  {
+    value: 'nunito', label: 'Nunito Sans', css: "'Nunito Sans', system-ui, sans-serif",
+    load: () => Promise.all([import('@fontsource/nunito-sans/400.css'), import('@fontsource/nunito-sans/600.css')]),
+  },
+  {
+    value: 'sourcesans', label: 'Source Sans 3', css: "'Source Sans 3', system-ui, sans-serif",
+    load: () => Promise.all([import('@fontsource/source-sans-3/400.css'), import('@fontsource/source-sans-3/600.css')]),
+  },
+  {
+    value: 'lora', label: 'Lora (met schreef)', css: "'Lora', Georgia, serif",
+    load: () => Promise.all([import('@fontsource/lora/400.css'), import('@fontsource/lora/500.css'), import('@fontsource/lora/400-italic.css')]),
+  },
+]
+
+export const handFonts = [
+  { value: 'dancing', label: 'Dancing Script (huidig)', css: "'Dancing Script', cursive" },
+  { value: 'parisienne', label: 'Parisienne', css: "'Parisienne', cursive", load: () => import('@fontsource/parisienne/400.css') },
+  { value: 'allura', label: 'Allura', css: "'Allura', cursive", load: () => import('@fontsource/allura/400.css') },
+  { value: 'sacramento', label: 'Sacramento', css: "'Sacramento', cursive", load: () => import('@fontsource/sacramento/400.css') },
+]
+
 export const defaults = {
   groen: greens[0].value,
   kop: headingColors[0].value,
   tekst: textColors[0].value,
+  fontKop: headingFonts[0].value,
+  fontTekst: bodyFonts[0].value,
+  fontHand: handFonts[0].value,
+  paneel: 0.78, // dekking van de crème panelen (0 = doorzichtig, 1 = dicht)
   heroTitel: site.showHeroTitle !== false,
+}
+
+function applyFont(varName, list, value) {
+  const root = document.documentElement
+  const font = list.find((f) => f.value === value)
+  if (!font || value === list[0].value) {
+    root.style.removeProperty(varName)
+    return
+  }
+  font.load?.()
+  root.style.setProperty(varName, font.css)
 }
 
 export function loadChoices() {
@@ -70,6 +128,10 @@ export function applyChoices(c) {
   set('--groen', c.groen, defaults.groen)
   set('--kop', c.kop, defaults.kop)
   set('--tekst', c.tekst, defaults.tekst)
+  set('--paneel-dekking', String(c.paneel), String(defaults.paneel))
+  applyFont('--font-kop', headingFonts, c.fontKop)
+  applyFont('--font-tekst', bodyFonts, c.fontTekst)
+  applyFont('--font-hand', handFonts, c.fontHand)
   root.dataset.heroTitel = c.heroTitel ? 'aan' : 'uit'
 }
 
@@ -88,11 +150,16 @@ export function contrast(a, b) {
 /** Leesbare samenvatting om door te sturen. */
 export function describe(c) {
   const name = (list, v) => list.find((o) => o.value.toLowerCase() === v.toLowerCase())?.label || 'eigen kleur'
+  const font = (list, v) => (list.find((f) => f.value === v)?.label || v).replace(' (huidig)', '')
   return [
     'Stijlkeuzes ASJblieft:',
     `- Groen (knoppen, links): ${c.groen} (${name(greens, c.groen)})`,
     `- Kleur koppen: ${c.kop} (${name(headingColors, c.kop)})`,
     `- Kleur tekst: ${c.tekst} (${name(textColors, c.tekst)})`,
+    `- Lettertype koppen: ${font(headingFonts, c.fontKop)}`,
+    `- Lettertype tekst: ${font(bodyFonts, c.fontTekst)}`,
+    `- Lettertype handschrift: ${font(handFonts, c.fontHand)}`,
+    `- Dekking panelen: ${Math.round(c.paneel * 100)}%`,
     `- Titel ASJblieft op homepage: ${c.heroTitel ? 'aan' : 'uit'}`,
   ].join('\n')
 }

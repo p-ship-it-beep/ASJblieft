@@ -28,10 +28,10 @@ Alle praktische gegevens staan in **`src/config/site.js`**: e-mailadres, telefoo
 ## Stijl testen (stijlpaneel)
 
 Zet `?stijl=aan` achter het adres. Er verschijnt een paneel waarmee je in je eigen browser test:
-groentint van knoppen en links (met contrastcontrole), kleur van koppen en tekst, en de grote titel "ASJblieft" op de homepage aan/uit.
+groentint van knoppen en links (met contrastcontrole), kleur van koppen en tekst, lettertypes voor koppen, tekst en handschrift, de dekking van de crème panelen, en de grote titel "ASJblieft" op de homepage aan/uit. Testlettertypes worden alleen geladen als ze gekozen zijn.
 Je keuzes blijven bewaard op alle pagina's. **Kopieer mijn keuzes** maakt een lijstje om door te sturen; **Standaard** zet alles terug. `?stijl=uit` verbergt het paneel.
 
-Definitief maken: zet de gekozen kleuren in `src/styles/global.css` (`--groen`, `--kop`, `--tekst`) en de titelkeuze in `src/config/site.js` (`showHeroTitle`).
+Definitief maken: zet de gekozen waarden in `src/styles/global.css` (`--groen`, `--kop`, `--tekst`, `--font-kop`, `--font-tekst`, `--font-hand`, `--paneel-dekking`) en de titelkeuze in `src/config/site.js` (`showHeroTitle`).
 
 ## Ecolinescans en foto toevoegen
 

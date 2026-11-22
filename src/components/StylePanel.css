@@ -55,3 +55,12 @@
   border: 0; border-radius: 50%; background: #222; color: #fff; cursor: pointer;
   box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
 }
+
+.sp-font { align-items: baseline; flex-direction: column; gap: 0; }
+.sp-font-sample { font-size: 20px; line-height: 1.25; color: #222; }
+.sp-font .sp-label { font-size: 11px; color: #666; }
+.sp-hint { margin: 6px 0 0; font-size: 12px; color: #666; }
+.sp-warn { color: #a12a2a; }
+.sp-range { display: grid; gap: 4px; }
+.sp-range input { width: 100%; accent-color: #222; }
+.sp-range-ends { display: flex; justify-content: space-between; font-size: 11px; color: #666; }

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { Palette, X, Copy, RotateCcw, Check } from 'lucide-react'
 import {
-  greens, headingColors, textColors, defaults, PANEL_KEY,
+  greens, headingColors, textColors, headingFonts, bodyFonts, handFonts, defaults, PANEL_KEY,
   loadChoices, saveChoices, clearChoices, applyChoices, contrast, describe,
 } from '../lib/styleChoices'
 import './StylePanel.css'
@@ -43,6 +43,30 @@ function Swatches({ name, options, value, onChange, against }) {
   )
 }
 
+/** Lettertypekeuze; elke optie wordt in het eigen lettertype getoond. */
+function FontOptions({ name, options, value, onChange, sample }) {
+  return (
+    <div className="sp-swatches" role="radiogroup" aria-label={name}>
+      {options.map((f) => {
+        const active = f.value === value
+        return (
+          <button
+            key={f.value}
+            type="button"
+            role="radio"
+            aria-checked={active}
+            className={`sp-swatch sp-font ${active ? 'is-active' : ''}`}
+            onClick={() => onChange(f.value)}
+          >
+            <span className="sp-font-sample" style={{ fontFamily: f.css }}>{sample}</span>
+            <span className="sp-label">{f.label}</span>
+          </button>
+        )
+      })}
+    </div>
+  )
+}
+
 export default function StylePanel() {
   const { search } = useLocation()
   const enabled = usePanelEnabled(search)
@@ -54,6 +78,11 @@ export default function StylePanel() {
     applyChoices(c)
     saveChoices(c)
   }, [c])
+
+  // Alleen voor wie het paneel gebruikt: alle testlettertypes laden voor de voorbeelden
+  useEffect(() => {
+    if (enabled) [...headingFonts, ...bodyFonts, ...handFonts].forEach((f) => f.load?.())
+  }, [enabled])
 
   if (!enabled) return null
 
@@ -113,6 +142,39 @@ export default function StylePanel() {
       <fieldset>
         <legend>Kleur tekst</legend>
         <Swatches name="Kleur tekst" options={textColors} value={c.tekst} onChange={update('tekst')} />
+      </fieldset>
+
+      <fieldset>
+        <legend>Lettertype koppen</legend>
+        <FontOptions name="Lettertype koppen" options={headingFonts} value={c.fontKop} onChange={update('fontKop')} sample="Begeleiding" />
+      </fieldset>
+
+      <fieldset>
+        <legend>Lettertype tekst</legend>
+        <FontOptions name="Lettertype tekst" options={bodyFonts} value={c.fontTekst} onChange={update('fontTekst')} sample="Samen in alle fases" />
+      </fieldset>
+
+      <fieldset>
+        <legend>Handschrift (accentregels)</legend>
+        <FontOptions name="Handschrift" options={handFonts} value={c.fontHand} onChange={update('fontHand')} sample="Omdat jouw verhaal telt" />
+        <p className="sp-hint">Het logo verandert niet mee; dat ontwikkelen we apart.</p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Panelen</legend>
+        <label className="sp-range">
+          <span>Dekking: {Math.round(c.paneel * 100)}%</span>
+          <input
+            type="range"
+            min="0.5"
+            max="1"
+            step="0.02"
+            value={c.paneel}
+            onChange={(e) => update('paneel')(Number(e.target.value))}
+          />
+          <span className="sp-range-ends"><span>doorzichtiger</span><span>dichter</span></span>
+        </label>
+        {c.paneel < 0.65 && <p className="sp-hint sp-warn">Let op: bij weinig dekking wordt tekst op een drukke aquarel minder goed leesbaar.</p>}
       </fieldset>
 
       <fieldset>

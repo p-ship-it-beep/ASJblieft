@@ -1,7 +1,7 @@
 .logo {
   display: inline-flex;
   align-items: baseline;
-  font-family: var(--font-hand);
+  font-family: var(--font-logo);
   color: var(--aubergine);
   line-height: 1;
   white-space: nowrap;

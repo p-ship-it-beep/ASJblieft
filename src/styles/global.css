@@ -13,7 +13,8 @@
   --zand: #E8DDCF;
   --creme: #FAF8F5;
   --tekst: #333333;
-  --paneel: rgba(250, 248, 245, 0.78); /* transparant crème achter tekst */
+  --paneel-dekking: 0.78;
+  --paneel: rgba(250, 248, 245, var(--paneel-dekking)); /* transparant crème achter tekst */
 
   /* Stijlkeuzes (aan te passen via het stijlpaneel, zie src/lib/styleChoices.js) */
   --groen: var(--olijf);                                   /* knoppen, links, menustreep */
@@ -30,6 +31,7 @@
   --font-kop: 'Playfair Display', Georgia, serif;
   --font-tekst: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-hand: 'Dancing Script', 'Brush Script MT', cursive;
+  --font-logo: 'Dancing Script', 'Brush Script MT', cursive; /* logo los van de accentletter */
 
   /* Maten */
   --radius: 24px;
