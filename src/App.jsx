@@ -10,6 +10,7 @@ import OverMij from './pages/OverMij'
 import Contact from './pages/Contact'
 import Privacy from './pages/Privacy'
 import NotFound from './pages/NotFound'
+import { site } from './config/site'
 
 const variants = {
   '/': 'home',
@@ -17,6 +18,30 @@ const variants = {
   '/postpartum-groepen': 'postpartum',
   '/over-mij': 'over',
   '/contact': 'contact',
+}
+
+const BG_KEY = 'asjblieft-achtergrond'
+
+/**
+ * Kiest de achtergrond: ?achtergrond=canva|svg in de URL (onthouden in de browser),
+ * anders de standaard uit site.js. ?achtergrond=standaard wist de eigen keuze.
+ */
+function useBackgroundChoice(search) {
+  const param = new URLSearchParams(search).get('achtergrond')
+  try {
+    if (param === 'standaard') localStorage.removeItem(BG_KEY)
+    else if (param === 'svg' || site.backgroundImages[param]) localStorage.setItem(BG_KEY, param)
+  } catch {
+    /* opslag niet beschikbaar: alleen deze paginaweergave */
+  }
+  let stored = null
+  try {
+    stored = localStorage.getItem(BG_KEY)
+  } catch {
+    /* idem */
+  }
+  const choice = (param && param !== 'standaard' ? param : stored) || site.background
+  return site.backgroundImages[choice] || null
 }
 
 /** Bij paginawissel naar boven scrollen; bij #anker naar dat anker. */
@@ -33,14 +58,15 @@ function ScrollToTop() {
 }
 
 export default function App() {
-  const { pathname } = useLocation()
+  const { pathname, search } = useLocation()
   const variant = variants[pathname] || 'contact'
+  const backgroundImage = useBackgroundChoice(search)
 
   return (
     <>
       <ScrollToTop />
       <a className="skip-link" href="#inhoud">Ga naar inhoud</a>
-      <EcolineBackground variant={variant} />
+      <EcolineBackground variant={variant} image={backgroundImage} />
       <Header />
       <main id="inhoud" className="site-main" tabIndex="-1">
         <Routes>

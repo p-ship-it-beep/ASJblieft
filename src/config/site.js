@@ -18,6 +18,18 @@ export const site = {
     street: 'Prins Hendrikstraat 151',
     city: 'Den Haag',
   },
+  /**
+   * Achtergrond van de hele site
+   * - 'svg'   → getekende ecolinevlekken met een eigen compositie per pagina (standaard)
+   * - 'canva' → de aquarel uit Canva (public/ecoline/canva-aquarel.jpg) op alle pagina's
+   * Testen zonder dit aan te passen: zet ?achtergrond=canva of ?achtergrond=svg achter
+   * het adres. Die keuze onthoudt je browser; ?achtergrond=standaard zet hem terug.
+   */
+  background: 'svg',
+  backgroundImages: {
+    canva: '/ecoline/canva-aquarel.jpg',
+  },
+
   form: {
     provider: 'web3forms', //                      of 'formspree' of 'php'
     endpoint: import.meta.env.VITE_FORM_ENDPOINT, // in .env

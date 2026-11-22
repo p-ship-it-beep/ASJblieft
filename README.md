@@ -20,6 +20,11 @@ Alle praktische gegevens staan in **`src/config/site.js`**: e-mailadres, telefoo
 - Staat `phone` of `whatsapp` op `null`, dan toont de site dat onderdeel niet.
 - Kleuren staan als variabelen bovenaan `src/styles/global.css`.
 
+## Achtergrond kiezen (SVG of Canva-aquarel)
+
+- **Testen in je eigen browser:** zet `?achtergrond=canva` achter het adres (bijv. `/?achtergrond=canva`). Je browser onthoudt die keuze op alle pagina's. Terug naar de getekende variant: `?achtergrond=svg`. Je eigen keuze wissen: `?achtergrond=standaard`.
+- **Voor alle bezoekers wisselen:** zet in `src/config/site.js` `background` op `'canva'` of terug op `'svg'`.
+
 ## Ecolinescans en foto toevoegen
 
 - **Ecoline-achtergrond:** de achtergrond wordt nu met SVG getekend. Wil je een echte scan gebruiken, zet die als WebP in `public/ecoline/` (bijvoorbeeld `home.webp`) en geef hem mee in `src/App.jsx`:
